@@ -1,0 +1,354 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//必须配置
+def mfph = [
+        //包名
+        "apk.applicationId": "com.example.likezhihu.detail",
+]
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.likezhihu.detail"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        manifestPlaceholders = mfph
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64','armeabi-v7a', 'arm64-v8a'
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    //此处配置必须添加 否则无法正确运行
+    aaptOptions {
+        additionalParameters '--auto-add-overlay'
+        //noCompress 'foo', 'bar'
+        ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false   //是否打开混淆
+//            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
+//            shrinkResources true  //打开资源压缩
+//            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+//    implementation 'com.androidx.support:appcompat-v7:30.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation project(path: ':ucrop')
+//    implementation project(path: ':nativetemplates')
+//    implementation project(path: ':refresh-layout-kernel')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    /*解决smart.refreshLayout 嵌套布局不能预览
+    https://github.com/scwang90/SmartRefreshLayout/issues/71*/
+    implementation 'com.google.android.material:material:1.2.1'
+
+    //cardview
+    implementation 'androidx.cardview:cardview'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+//    implementation project(path: ':richeditor')
+//    implementation project(path: ':flowlayout')
+//    implementation project(path: ':chartlibrary')
+//    implementation project(':picture_library')
+
+    //a,b,c选择滚动条
+//    implementation project(':dlsidebar')
+    // 拼音
+//    implementation files('libs/pinyin4j-2.5.0.jar')
+
+    /**
+     * 新浪微博登录
+     */
+//    implementation(name: 'openDefault-9.12.0', ext: 'aar')
+
+    //anko
+    implementation 'org.jetbrains.anko:anko:0.10.5'
+
+    //分包
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //网络请求框架
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.lzy.net:okrx2:2.0.2'
+    implementation 'com.lzy.net:okserver:2.0.5'
+
+    //json解析
+    implementation 'com.alibaba:fastjson:1.2.55'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //下拉刷新库
+//    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+//    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+//    implementation 'androidx.palette:palette-ktx:1.0.0'
+    //recycleview管理
+//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    /**
+     * recycleview管理 仅支持AndroidX
+     */
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    //圆形头像
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //tab指示器
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+
+    /**
+     * 动态权限申请
+     */
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    /**
+     * 对话框
+     */
+//    implementation 'com.lxj:xpopup:1.8.7'
+    implementation 'com.lxj:xpopup:2.0.3'
+
+    /**
+     * 沉浸式状态栏
+     */
+
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta05'
+
+    // fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta05'
+
+    // kotlin扩展（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0-beta05'
+
+    //选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
+
+    //垂直布局
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+
+    /**
+     * 图片选择框架
+     */
+
+    //多图选择https://github.com/LuckSiege/PictureSelector
+//    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
+//    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
+
+    // BigImageViewPager 查看大图
+//    implementation 'com.github.SherlockGougou:BigImageViewPager:v4_4.1.0'
+    // 查看大图
+    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.1.3'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+//    implementation 'com.github.bumptech.glide:glide:4.9.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    // 查看大图 仿微信查看大图效果
+    implementation 'com.byc:ImageWatcher:1.1.0'
+    //查看大图 https://github.com/iielse/imageviewer
+//    implementation 'com.github.iielse:imageviewer:2.1.2'
+
+    /**
+     * 阿里云OSS
+     */
+//    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.2'
+    /**
+     * 微信登录
+     */
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.4.3'
+
+    /**
+     * 蜘蛛网控件，雷达图
+     */
+//    implementation 'me.panpf:spider-web-score-view:1.0.1'
+//    implementation project(path: ':spider-web-score-view')
+
+    /**
+     * lottie 动画
+     */
+    implementation 'com.airbnb.android:lottie:3.0.7'
+    /**
+     * netty 框架 socket通信
+     */
+    implementation 'io.netty:netty-all:4.1.53.Final'
+    /**
+     * greendao数据库
+     */
+//    implementation 'org.greenrobot:greendao:3.3.0' // add library
+
+    /**
+     *  支付宝支付
+     */
+//    implementation(name: 'alipaysdk-noutdid-15.8.02.210308182128', ext: 'aar')
+
+    /**
+     * 更新控制
+     */
+//    implementation 'com.github.MZCretin:AutoUpdateProject:v2.0.4'
+
+    /**
+     * 可拖拽悬浮按钮
+     */
+    implementation 'com.github.wangfeng19930909:DragFloatingActionButton:1.0.1'
+    /**
+     * FlexboxLayout
+     */
+    implementation 'com.google.android:flexbox:2.0.1'
+
+
+    /**
+     * 友盟相关
+     * 友盟统计SDK
+     * 友盟推送
+     */
+//    implementation(name: 'umeng-apm-v1.1.0', ext: 'aar')
+//    implementation(name: 'umeng-asms-v1.1.4', ext: 'aar')
+//    implementation project(path: ':push')//友盟推送
+    /**
+     * 友盟第三方厂商通道
+     */
+    //小米
+//    implementation 'com.umeng.umsdk:xiaomi-push:3.8.5'
+//    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.2.1'
+//    //华为
+//    implementation 'com.huawei.hms:push:5.0.2.300'
+//    implementation 'com.umeng.umsdk:huawei-umengaccs:1.3.1'
+//    //魅族
+//    implementation 'com.umeng.umsdk:meizu-push:4.0.2'
+//    implementation 'com.umeng.umsdk:meizu-umengaccs:1.1.3'
+//    //oppo
+//    implementation 'com.umeng.umsdk:oppo-push:2.1.0'
+//    implementation 'com.umeng.umsdk:oppo-umengaccs:1.0.7-fix'
+//    //vivo
+//    implementation 'com.umeng.umsdk:vivo-push:2.9.0'
+//    implementation 'com.umeng.umsdk:vivo-umengaccs:1.1.2'
+
+    /**
+     * uni-app
+     */
+//    implementation 'com.alibaba:fastjson:1.1.46.android' //必须集成
+//    implementation 'com.facebook.fresco:fresco:1.13.0'//必须集成
+//    implementation 'com.facebook.fresco:animated-gif:1.13.0'//必须集成
+//    implementation 'com.taobao.android:weex_sdk:0.18.7-beta-1@aar'
+//    implementation 'com.taobao.android:weex_inspector:0.14.7'
+
+    /**
+     * aria下载框架
+     */
+//    implementation 'com.arialyy.aria:aria-core:3.6.3'
+//    kapt 'com.arialyy.aria:aria-compiler:3.6.3'
+    /**
+     * 极光推送
+     */
+//    implementation 'cn.jiguang.sdk:jpush:3.9.0'  // 此处以JPush 3.8.6 版本为例。
+//    implementation 'cn.jiguang.sdk:jcore:2.6.0'  // 此处以JCore 2.6.0 版本为例。
+    //极光魔链
+//    implementation 'cn.jiguang.sdk:jmlink:1.2.4'  // 此处以JMlink 1.2.0 版本为例。
+    /**
+     * 第三方厂商通道
+     */
+    // hms push
+//    implementation 'com.huawei.hms:push:5.0.2.300'
+//    //引入极光-华为插件，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
+//    implementation 'cn.jiguang.sdk.plugin:huawei:3.9.0'
+//    //小米
+//    implementation 'cn.jiguang.sdk.plugin:xiaomi:3.9.0'
+//    //vivo
+//    implementation 'cn.jiguang.sdk.plugin:vivo:3.9.0'
+//    //魅族
+//    implementation 'cn.jiguang.sdk.plugin:meizu:3.9.0'
+//    //oppo
+//    implementation 'cn.jiguang.sdk.plugin:oppo:3.9.0'
+    /**
+     * 指示器
+     */
+//    implementation 'com.github.tomlezen:ViewPagerIndicator:1.0.1'
+//    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.0'
+
+    //小米//版本号和对应的JPush版本号相同
+//    implementation 'cn.jiguang.sdk.plugin:xiaomi:3.9.0'
+//    implementation 'cn.jiguang.sdk.plugin:vivo:3.9.0'
+//    implementation(name: 'com.heytap.msp-push-2.1.0', ext: 'aar')
+//    implementation(name: 'oppo_push_v2.1.0', ext: 'aar')
+//    implementation 'cn.jiguang.sdk.plugin:meizu:3.9.0'
+    // meizu push
+    // implementation 'com.meizu.flyme.internet:push-internal:3.7.0@aar'
+
+    //轮播图
+//    implementation 'io.github.youth5201314:banner:2.2.2'
+//    implementation 'com.youth.banner:banner:1.4.10'
+//    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.0'
+//
+//    //版本更新框架
+//    implementation 'com.github.AlexLiuSheng:CheckVersionLib:2.4.1_androidx'
+//
+//    //google广告
+//    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+//    //google登录
+//    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+//    //google支付
+//    implementation 'com.android.billingclient:billing:3.0.2'
+    //数字选择器
+//    implementation 'com.github.NewHuLe:NumberPickerView:v1.2'
+//    implementation project(path:':libs:crashshield-2.0.3-release')
+//    implementation project(path:':libs:logger-2.0.3-release')
+//    implementation project(path:':libs:main-2.0.3-release')
+//    implementation project(path:':libs:phoneNumber-L-AuthSDK-2.12.1.4')
+}
+
+/*
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.android.support:recyclerview-v7:+'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview'
+    implementation 'com.lxj:xpopup:2.0.3'
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+}*/

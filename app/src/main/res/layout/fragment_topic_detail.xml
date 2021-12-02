@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_title_h"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="23dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_back_h"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/image_back_b" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tv_topic_name_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="神舟十二号突破“五个首次”？三位宇航员将返航，揭秘太空奥秘？"
+                        android:textColor="@color/color_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rv_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f8f9"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/color_f8f9"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_arrow_up_top"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/image_arrow_up_blue"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下拉查看"
+                android:textColor="@color/color_main"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.example.likezhihu.detail.util.BounceScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-700dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            app:damping="5.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text=""
+                    android:textColor="@color/color_text"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/ll_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/image_avatar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/yipin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="西夏一品堂"
+                            android:textColor="@color/color_text"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_publish_time_top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="发布时间:09/15"
+                            android:textColor="@color/color_ed_hint"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rel_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="神舟十二号发射已经有一段时间了，大家都看到了中国的航天硬实力！自神舟十二号发射之后，返航俨然成为全世界重点关注的事情！媒体高度关注确切时间，想要知道三位宇航员何时会离开空间站，踏上返回母国的路程！"
+                        android:textColor="@color/color_text"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/yipin" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="据悉，神舟十二号不是中国第一次发射的载人飞船，其前面有六次。而这次的神舟十二号在前面六次的基础上，实现了巨大的突破。其在能力上有着全方位的提高，可谓是站在巨人的肩膀上，集齐了前面所有的经验，并达成了“五个首次”！"
+                        android:textColor="@color/color_text"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/shenzhou" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_no_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:gravity="center"
+                        android:text="暂无新内容，去别处看看吧"
+                        android:textColor="@color/color_ed_hint"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_next_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:background="@color/color_f8f9"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/image_arrow_up"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@mipmap/image_arrow_up_blue"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tv_next"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="该话题的下一个讨论"
+                                android:textColor="@color/color_text_808"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_name_next"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="16dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/image_avatar_next"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/mt" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_username_next"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="我叫MT"
+                                    android:textColor="@color/color_text"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_publish_time_top_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:text="发布时间:09/14"
+                                    android:textColor="@color/color_ed_hint"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/ed_content_next"
+                                android:layout_width="match_parent"
+                                android:layout_height="800dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                android:text="其一，在自主对接速度上有所提高，
+                                首次实现自主快速对接！神舟十二号在发射之后，
+                                仅用6.5个小时与核心舱实现有效对接，
+                                并实施绕飞！这一时间可谓是非常地短，实现了历史上的突破。国产芯片、系统等设备功能的强大，为这次的交会提高了有利条件，使其由原来的2天时间直接减至6.5个小时。其二，在轨停靠时间有所延长，首次实现约3个月！三位宇航员在太空已经进行了3个月的办公。他们从四个方面出发，主要对日常管理、出舱活动、相关作业及空间实验等多个方面进行协调任务。其三，在返回能力上有所提升，首次具备多高度轨道返回能力！神舟十二号融入了之前不同的设计，在轨道上进行了多种调整，并确定合适的大致范围。其四，东风着陆场在航天工程中首次运用！其五，在救援方面做到极致，此次融入多种应急措施！其能做到天、陆两用，为宇航员生命保驾护航！
+“太空出差三人组”要回家了，揭秘太空奥秘！
+
+近日，官方直接确定了时间，直言“太空出差三人组”要回家了！白驹过隙，时光荏苒。时间在不知不觉之中开始流逝，这一下就距离三位宇航员登上太空已有三个月的时间。说到这里，不禁有人好奇，这么久，宇航员都在做什么？会无聊吗？
+
+这点不得不说，大家的担心是多余的！从现有资料看，宇航员除了在工作期间进行相关任务外，还会拍摄相关航天照片。更有意思的是，他们第一角度的照片引起热议，引来国民的羡慕，直言他们生活在“全方面无死角别墅房”里面。" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.example.likezhihu.detail.util.BounceScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>

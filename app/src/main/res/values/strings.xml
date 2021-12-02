@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">仿知乎</string>
+    <string name="main_tab0">首页</string>
+    <string name="main_tab1">比分</string>
+    <string name="main_tab2">创作者中心</string>
+    <string name="main_tab3">我的</string>
+</resources>
